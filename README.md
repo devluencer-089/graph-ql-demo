@@ -21,3 +21,5 @@
 
 - [graphql/graphql-js Star History](http://www.timqian.com/star-history/#graphql/graphql-js)
   - The [`graphql-js` repository](https://github.com/graphql/graphql-js) is the most popular public repo of [Facebook's `graphql` Github organization](https://github.com/graphql) in terms of stars. Its star history shows that GraphQL adoption (as measured in stars, an admittedly flawed metric) has been increasing at a surprisingly steady pace since the repo went live.
+- [Spring Boot and GraphQL](http://www.baeldung.com/spring-graphql)
+  - An excellent primer from Bealung for getting started GraphQL and Spring Boot.
