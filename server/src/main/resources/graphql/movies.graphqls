@@ -1,0 +1,15 @@
+schema {
+    query: Query
+}
+
+extend type Query {
+    allMovies: [Movie]!
+    findMovieById(id: ID!): Movie
+}
+
+type Movie {
+    id: ID!
+    title: String!
+    description: String!
+    year: String!
+}

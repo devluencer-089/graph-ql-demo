@@ -1,13 +1,4 @@
 type Query {
     # The API Version
     version: String!
-    movie: Movie!
-}
-
-type Movie {
-    id: ID!
-    # This description will be printed
-    title: String!
-    description: String!
-    year: String!
 }
