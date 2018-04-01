@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Sidedrawer from './Sidedrawer';
+import AppBar from './AppBar';
 
 describe('AppBar', () => {
   it('should match snapshot', () => {
-    let eut = shallow(<Sidedrawer />);
+    let eut = shallow(<AppBar />);
 
     expect(eut).toMatchSnapshot();
   });
