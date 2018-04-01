@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { createShallow } from 'material-ui/test-utils';
 import AppBar from './AppBar';
 
-describe('AppBar', () => {
+describe('AppBar Component', () => {
+  let shallow = createShallow({ dive: true });
   it('should match snapshot', () => {
     let eut = shallow(<AppBar />);
 

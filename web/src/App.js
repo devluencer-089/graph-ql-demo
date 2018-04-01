@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import AppBar from './components/appBar/AppBar';
-import Users from './components/users/Users';
+import Employees from './components/employees/Employees';
 
 const styles = {
   main: {
@@ -19,13 +19,13 @@ const withAppBar = WrappedComponent => () => (
   </AppBar>
 );
 
-const UsersWithAppBar = withAppBar(Users);
+const EmployeesWithAppBar = withAppBar(Employees);
 
 const App = () => (
   <div style={styles.main}>
     <Switch>
-      <Route exact path="/users" component={UsersWithAppBar} />
-      <Route render={() => <Redirect to="/users" />} />
+      <Route exact path="/employees" component={EmployeesWithAppBar} />
+      <Route render={() => <Redirect to="/employees" />} />
     </Switch>
   </div>
 );
