@@ -1,0 +1,24 @@
+schema {
+    query: Query
+}
+
+extend type Query {
+    allEmployees: [Employee]!
+    getEmployee(id: ID): Employee
+}
+
+type Employee {
+    id: ID!
+    level: Level!
+    coworkers: [Employee]
+    phoneNumber: String
+    firstname: String
+    lastname: String
+}
+
+enum Level {
+    JUNIOR_DEVELOPER
+    SENIOR_DEVELOPER
+    ARCHITECT
+    LEAD_DEVELOPER
+}
