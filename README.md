@@ -38,6 +38,10 @@
 - pagination
 
 
+## starting the server
+
+`mvn spring-boot:run`
+
 ## proposed schema
 ```
 type Employee {
