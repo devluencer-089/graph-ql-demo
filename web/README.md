@@ -1,20 +1,24 @@
-node must be installed.
+# Web application
 
-to run application:
-```
+`node` and `yarn` must be installed.
+
+To run the application:
+
+```shell
 npm install
 yarn start
 ```
 
-webapp will be available at http://localhost:3200
+The web app will be available at <http://localhost:3200>.
 
 ## GraphQL using Apollo Client
 
-Using Apollo Graph QL Framework according to https://www.apollographql.com/docs/react/essentials/get-started.html
+Uses the Apollo GraphQL Framework according to <https://www.apollographql.com/docs/react/essentials/get-started.html>.
 
-Apollo Boost is like Spring Boot. It allows us to use the apollo client preconfigured.
+Apollo Boost is like Spring Boot. It allows us to use a preconfigured Apollo client.
 
 ## GraphQL Testing Issues
+
 https://github.com/graphql/graphql-js/issues/1248
 https://github.com/apollographql/graphql-tag/issues/155
 
