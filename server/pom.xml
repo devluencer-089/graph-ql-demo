@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>graph-ql-server</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo server for GraphQL</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
