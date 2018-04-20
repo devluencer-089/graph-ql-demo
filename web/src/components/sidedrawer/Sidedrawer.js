@@ -15,9 +15,9 @@ const styles = () => ({
 
 const listOfMenuEntries = [
   {
-    label: 'Alle User',
+    label: 'all employees',
     icon: <UsersIcon />,
-    value: '/users'
+    value: '/employees'
   }
 ];
 

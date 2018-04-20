@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-boost": "^0.1.4",
     "apollo-cache-inmemory": "^1.1.11",
     "apollo-client": "^2.2.7",
     "apollo-link-http": "^1.5.3",
-    "graphql": "^0.13.1",
+    "graphql": "0.13.0",
     "graphql-tag": "^2.8.0",
     "material-ui": "^1.0.0-beta.37",
     "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.2.0",
-    "react-apollo": "^2.0.4",
+    "react-apollo": "^2.1.1",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
@@ -33,5 +34,10 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+  },
+  "proxy": {
+    "/graphql": {
+      "target": "http://localhost:8100"
+    }
   }
 }

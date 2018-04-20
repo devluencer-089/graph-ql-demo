@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmployeeCard Component should match snapshot 1`] = `
+<Card
+  className="EmployeeCard-card-1"
+  raised={false}
+>
+  <WithStyles(CardHeader)
+    subheader="Senior Developer"
+    title="Si Tran"
+  />
+  <WithStyles(CardContent)>
+    <WithStyles(Typography)
+      component="p"
+    />
+  </WithStyles(CardContent)>
+  <WithStyles(CardActions)>
+    <WithStyles(Button)
+      size="small"
+    >
+      Details
+    </WithStyles(Button)>
+  </WithStyles(CardActions)>
+</Card>
+`;
