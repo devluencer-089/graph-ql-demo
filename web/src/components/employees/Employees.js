@@ -14,6 +14,9 @@ export const query = gql`
       firstname
       lastname
       phoneNumber
+      projects {
+        name
+      }
     }
   }
 `;

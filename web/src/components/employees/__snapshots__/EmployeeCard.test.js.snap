@@ -13,6 +13,9 @@ exports[`EmployeeCard Component should match snapshot 1`] = `
     <WithStyles(Typography)
       component="p"
     />
+    <WithStyles(Typography)
+      component="p"
+    />
   </WithStyles(CardContent)>
   <WithStyles(CardActions)>
     <WithStyles(Button)

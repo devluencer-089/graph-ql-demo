@@ -21,6 +21,9 @@ function EmployeeCard(props) {
       <CardHeader title={fullname} subheader={level} />
       <CardContent>
         <Typography component="p">{employee.phoneNumber}</Typography>
+        <Typography component="p">
+          {employee.projects && employee.projects.map(p => p.name).join(', ')}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Details</Button>
