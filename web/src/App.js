@@ -5,6 +5,7 @@ import './App.css';
 
 import AppBar from './components/appBar/AppBar';
 import Employees from './components/employees/Employees';
+import EmployeeDetails from './components/employees/EmployeeDetails';
 
 const styles = {
   main: {
@@ -13,18 +14,24 @@ const styles = {
   }
 };
 
-const withAppBar = WrappedComponent => () => (
+const withAppBar = WrappedComponent => props => (
   <AppBar>
-    <WrappedComponent />
+    <WrappedComponent {...props} />
   </AppBar>
 );
 
 const EmployeesWithAppBar = withAppBar(Employees);
+const EmployeeDetailsWithAppBar = withAppBar(EmployeeDetails);
 
 const App = () => (
   <div style={styles.main}>
     <Switch>
       <Route exact path="/employees" component={EmployeesWithAppBar} />
+      <Route
+        exact
+        path="/employees/:employeeId"
+        component={EmployeeDetailsWithAppBar}
+      />
       <Route render={() => <Redirect to="/employees" />} />
     </Switch>
   </div>
