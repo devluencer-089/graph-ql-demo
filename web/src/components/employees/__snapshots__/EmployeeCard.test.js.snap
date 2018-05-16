@@ -13,10 +13,15 @@ exports[`EmployeeCard Component should match snapshot 1`] = `
     <WithStyles(Typography)
       component="p"
     />
+    <WithStyles(Typography)
+      component="p"
+    />
   </WithStyles(CardContent)>
   <WithStyles(CardActions)>
     <WithStyles(Button)
+      component={[Function]}
       size="small"
+      to="employees/3"
     >
       Details
     </WithStyles(Button)>

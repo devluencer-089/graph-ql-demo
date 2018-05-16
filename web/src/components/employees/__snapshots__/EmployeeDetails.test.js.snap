@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Employees Component GraphQL Query should match snapshot 1`] = `
+exports[`EmployeeDetails Component GraphQL Query should match snapshot 1`] = `
 Object {
   "definitions": Array [
     Object {
@@ -8,7 +8,7 @@ Object {
       "kind": "OperationDefinition",
       "name": Object {
         "kind": "Name",
-        "value": "EmployeeQuery",
+        "value": "EmployeeDetailQuery",
       },
       "operation": "query",
       "selectionSet": Object {
@@ -16,23 +16,27 @@ Object {
         "selections": Array [
           Object {
             "alias": undefined,
-            "arguments": Array [],
+            "arguments": Array [
+              Object {
+                "kind": "Argument",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "id",
+                },
+                "value": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "employeeId",
+                  },
+                },
+              },
+            ],
             "directives": Array [],
             "kind": "Field",
             "name": Object {
               "kind": "Name",
-              "value": "version",
-            },
-            "selectionSet": undefined,
-          },
-          Object {
-            "alias": undefined,
-            "arguments": Array [],
-            "directives": Array [],
-            "kind": "Field",
-            "name": Object {
-              "kind": "Name",
-              "value": "allEmployees",
+              "value": "getEmployee",
             },
             "selectionSet": Object {
               "kind": "SelectionSet",
@@ -123,60 +127,63 @@ Object {
           },
         ],
       },
-      "variableDefinitions": Array [],
+      "variableDefinitions": Array [
+        Object {
+          "defaultValue": undefined,
+          "kind": "VariableDefinition",
+          "type": Object {
+            "kind": "NamedType",
+            "name": Object {
+              "kind": "Name",
+              "value": "ID",
+            },
+          },
+          "variable": Object {
+            "kind": "Variable",
+            "name": Object {
+              "kind": "Name",
+              "value": "employeeId",
+            },
+          },
+        },
+      ],
     },
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 174,
+    "end": 201,
     "start": 0,
   },
 }
 `;
 
-exports[`Employees Component should match snapshot 1`] = `
-<div>
-  <div
-    key="3"
-  >
-    <WithStyles(EmployeeCard)
-      employee={
-        Object {
-          "firstname": "Si",
-          "id": "3",
-          "lastname": "Tran",
-          "level": "SENIOR_DEVELOPER",
-        }
-      }
-    />
-  </div>
-  <div
-    key="2"
-  >
-    <WithStyles(EmployeeCard)
-      employee={
-        Object {
-          "firstname": "Michael",
-          "id": "2",
-          "lastname": "Sewell",
-          "level": "SENIOR_DEVELOPER",
-        }
-      }
-    />
-  </div>
-  <div
-    key="1"
-  >
-    <WithStyles(EmployeeCard)
-      employee={
-        Object {
-          "firstname": "Michael",
-          "id": "1",
-          "lastname": "Omann",
-          "level": "ARCHITECT",
-        }
-      }
-    />
-  </div>
-</div>
+exports[`EmployeeDetails Component should match snapshot 1`] = `
+<Apollo(WithStyles(EmployeeDetails))
+  classes={Object {}}
+  data={
+    Object {
+      "getEmployee": Object {
+        "firstname": "Si",
+        "id": "3",
+        "lastname": "Tran",
+        "level": "SENIOR_DEVELOPER",
+        "projects": Array [
+          Object {
+            "name": "TeamBank",
+          },
+          Object {
+            "name": "Paydirekt",
+          },
+        ],
+      },
+    }
+  }
+  match={
+    Object {
+      "params": Object {
+        "employeeId": 3,
+      },
+    }
+  }
+/>
 `;

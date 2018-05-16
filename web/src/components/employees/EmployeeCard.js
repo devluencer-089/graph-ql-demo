@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
@@ -21,9 +22,14 @@ function EmployeeCard(props) {
       <CardHeader title={fullname} subheader={level} />
       <CardContent>
         <Typography component="p">{employee.phoneNumber}</Typography>
+        <Typography component="p">
+          {employee.projects && employee.projects.map(p => p.name).join(', ')}
+        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Details</Button>
+        <Button to={`employees/${employee.id}`} size="small" component={Link}>
+          Details
+        </Button>
       </CardActions>
     </Card>
   );

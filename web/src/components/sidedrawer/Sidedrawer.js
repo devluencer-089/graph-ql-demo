@@ -18,6 +18,11 @@ const listOfMenuEntries = [
     label: 'all employees',
     icon: <UsersIcon />,
     value: '/employees'
+  },
+  {
+    label: 'all projects',
+    icon: <UsersIcon />,
+    value: '/projects'
   }
 ];
 
