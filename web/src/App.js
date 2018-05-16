@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import AppBar from './components/appBar/AppBar';
+import Projects from './components/projects/Projects';
 import Employees from './components/employees/Employees';
 import EmployeeDetails from './components/employees/EmployeeDetails';
 
@@ -20,6 +21,7 @@ const withAppBar = WrappedComponent => props => (
   </AppBar>
 );
 
+const ProjectsWithAppBar = withAppBar(Projects);
 const EmployeesWithAppBar = withAppBar(Employees);
 const EmployeeDetailsWithAppBar = withAppBar(EmployeeDetails);
 
@@ -32,6 +34,8 @@ const App = () => (
         path="/employees/:employeeId"
         component={EmployeeDetailsWithAppBar}
       />
+
+      <Route exact path="/projects" component={ProjectsWithAppBar} />
       <Route render={() => <Redirect to="/employees" />} />
     </Switch>
   </div>
