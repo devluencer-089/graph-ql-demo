@@ -3,10 +3,15 @@
 ## Quickstart
 Server is running on port 8100.
 
-GraphiQL In-Browser IDE for exploring test queries is located at
-```
-http://localhost:8100/graphiql
-```
+GraphiQL In-Browser IDE for exploring the API is located at
+
+<http://localhost:8100/graphiql>
+
+
+Voyager, a visualization tool for GraphQL APIs is located at
+
+<http://localhost:8100/voyager>
+
 
 A test-query should be present, if not you can try this one:
 ```
@@ -21,7 +26,7 @@ A test-query should be present, if not you can try this one:
 ```
 
 ## Technologies Inside
-* Spring Boot 2.0.0
+* Spring Boot 2.x
 * H2 In-Memory Database
 * Flyway for testdata
   * scripts located at resources/db/migration
