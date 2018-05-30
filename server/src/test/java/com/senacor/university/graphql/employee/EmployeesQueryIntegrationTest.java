@@ -24,7 +24,7 @@ public class EmployeesQueryIntegrationTest {
 
         GraphQLResult result = client.executeQuery("all_employees.txt");
 
-        List<Employee> employees = result.asListOf("employees", Employee.class);
+        List<Employee> employees = result.descentTo("employees").asListOf(Employee.class);
         assertThat(employees).hasSize(5);
     }
 
@@ -33,8 +33,7 @@ public class EmployeesQueryIntegrationTest {
 
         GraphQLResult result = client.executeQuery("find_employee_by_id.txt");
 
-        Employee employee = result.as("employee", Employee.class);
-
+        Employee employee = result.descentTo("employee").as(Employee.class);
         EmployeeAssert.assertThat(employee)
                 .hasId("001")
                 .hasFirstName("Si")

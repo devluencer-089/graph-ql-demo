@@ -5,18 +5,31 @@ import io.restassured.path.json.JsonPath;
 import java.util.List;
 
 public class GraphQLResult {
+
+    private static final String DEFAULT_ROOT_PATH = "data";
+
     private final JsonPath jsonPath;
+    private final String rootPath;
 
-    public GraphQLResult(JsonPath jsonPath) {
+    GraphQLResult(JsonPath jsonPath) {
+        this(jsonPath, DEFAULT_ROOT_PATH);
+    }
+
+
+    private GraphQLResult(JsonPath jsonPath, String rootPath) {
         this.jsonPath = jsonPath;
+        this.rootPath = rootPath;
     }
 
-
-    public <T> List<T> asListOf(String path, Class<T> clazz) {
-        return jsonPath.getList("data." + path, clazz);
+    public GraphQLResult descentTo(String path) {
+        return new GraphQLResult(jsonPath, String.join(".", rootPath, path));
     }
 
-    public <T> T as(String path, Class<T> clazz) {
-        return jsonPath.getObject("data." + path, clazz);
+    public <T> List<T> asListOf(Class<T> clazz) {
+        return jsonPath.getList(rootPath, clazz);
+    }
+
+    public <T> T as(Class<T> clazz) {
+        return jsonPath.getObject(rootPath, clazz);
     }
 }
