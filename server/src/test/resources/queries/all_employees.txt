@@ -1,0 +1,9 @@
+{
+    employees {
+        id,
+        firstName,
+        lastName,
+        age,
+        gender
+    }
+}
