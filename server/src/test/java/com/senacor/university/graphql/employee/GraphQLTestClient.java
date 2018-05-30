@@ -28,18 +28,23 @@ public class GraphQLTestClient {
     public GraphQLResult executeQuery(String queryFileName) throws IOException {
 
         String queryFileContents = readQueryFileContents(queryFileName);
+        int serverPort = Integer.parseInt(environment.getProperty("local.server.port"));
 
-        JsonPath jsonPath = given()
-                .body(Collections.singletonMap("query", queryFileContents))
-                .port(Integer.parseInt(environment.getProperty("local.server.port")))
-                .when()
-                .post("/graphql")
-                .then()
-                .log().everything()
-                .statusCode(200)
-                .extract().body().jsonPath();
+        JsonPath jsonPath = execute(queryFileContents, serverPort);
 
         return new GraphQLResult(jsonPath);
+    }
+
+    private JsonPath execute(String queryFileContents, int serverPort) {
+        return given()
+                    .body(Collections.singletonMap("query", queryFileContents))
+                    .port(serverPort)
+                    .when()
+                    .post("/graphql")
+                    .then()
+                    .log().everything()
+                    .statusCode(200)
+                    .extract().body().jsonPath();
     }
 
     private static String readQueryFileContents(String queryFileName) throws IOException {
