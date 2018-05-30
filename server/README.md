@@ -24,6 +24,26 @@ employees {
   }
 ```
 
+
+Run app locally:
+```
+mvn spring-boot:run 
+
+```
+or
+```
+mvn spring-boot:start 
+
+```
+
+
+Deploy to Heroku:
+```
+mvn heroku:deploy
+
+```
+Open [https://graphicademy.herokuapp.com/graphiql]
+
 ## Technologies Inside
 * Spring Boot 2.x
 * GraphQL-Spring-Boot-Starter
