@@ -1,0 +1,23 @@
+schema {
+    query: Query
+}
+
+extend type Query {
+    employees: [Employee!]!
+    employee(id: ID!): Employee
+}
+
+type Employee {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    age: Int!
+    gender: Gender!
+}
+
+enum Gender {
+    FEMALE,
+    MALE,
+
+}
+
