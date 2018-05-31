@@ -1,0 +1,17 @@
+{
+  brain: employee(id: "001") {
+      ...fullName
+  },
+  muscle: employee(id: "002") {
+      ...fullName
+  },
+  face: employee(id: "003") {
+      ...fullName
+  }
+}
+
+
+fragment fullName on Employee {
+  firstName
+  lastName
+}

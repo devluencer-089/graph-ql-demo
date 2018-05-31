@@ -65,4 +65,19 @@ public class EmployeesQueryIntegrationTest {
         Employee face = result.descentTo("face").as(Employee.class);
         EmployeeAssert.assertThat(face).hasFirstName("Michael").hasLastName("Sewell");
     }
+
+    @Test
+    public void itFindsMultipleEmployeesWhenUsingAliasesAndFragments() throws IOException {
+
+        GraphQLResult result = client.executeQuery("find_multiple_employees_by_id_using_fragments.txt");
+
+        Employee brain = result.descentTo("brain").as(Employee.class);
+        EmployeeAssert.assertThat(brain).hasFirstName("Si").hasLastName("Tran");
+
+        Employee muscle = result.descentTo("muscle").as(Employee.class);
+        EmployeeAssert.assertThat(muscle).hasFirstName("Michael").hasLastName("Omann");
+
+        Employee face = result.descentTo("face").as(Employee.class);
+        EmployeeAssert.assertThat(face).hasFirstName("Michael").hasLastName("Sewell");
+    }
 }
