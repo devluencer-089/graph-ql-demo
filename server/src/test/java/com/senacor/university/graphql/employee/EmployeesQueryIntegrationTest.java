@@ -80,4 +80,14 @@ public class EmployeesQueryIntegrationTest {
         Employee face = result.descentTo("face").as(Employee.class);
         EmployeeAssert.assertThat(face).hasFirstName("Michael").hasLastName("Sewell");
     }
+
+    @Test
+    public void itSupportsExplicitOperationNames() throws IOException {
+
+        GraphQLResult result = client.executeQuery("query_with_operation_name.txt");
+
+        assertThat(result.descentTo("brain").as(Employee.class)).isNotNull();
+        assertThat(result.descentTo("face").as(Employee.class)).isNotNull();
+        assertThat(result.descentTo("muscle").as(Employee.class)).isNotNull();
+    }
 }

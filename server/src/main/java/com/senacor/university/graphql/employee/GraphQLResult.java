@@ -32,4 +32,8 @@ public class GraphQLResult {
     public <T> T as(Class<T> clazz) {
         return jsonPath.getObject(rootPath, clazz);
     }
+
+    public JsonPath jsonPath() {
+        return jsonPath;
+    }
 }
