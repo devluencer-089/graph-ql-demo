@@ -41,4 +41,28 @@ public class EmployeesQueryIntegrationTest {
                 .hasGender(Gender.MALE)
                 .hasAge(31);
     }
+
+    @Test
+    public void itIgnoresRedundantQueries() throws IOException {
+
+        GraphQLResult result = client.executeQuery("find_multiple_employees_with_same_id.txt");
+
+        Employee employee = result.descentTo("employee").as(Employee.class);
+        EmployeeAssert.assertThat(employee).hasId("001");
+    }
+
+    @Test
+    public void itFindsMultipleEmployeesWhenUsingAliases() throws IOException {
+
+        GraphQLResult result = client.executeQuery("find_multiple_employees_by_id.txt");
+
+        Employee brain = result.descentTo("brain").as(Employee.class);
+        EmployeeAssert.assertThat(brain).hasFirstName("Si").hasLastName("Tran");
+
+        Employee muscle = result.descentTo("muscle").as(Employee.class);
+        EmployeeAssert.assertThat(muscle).hasFirstName("Michael").hasLastName("Omann");
+
+        Employee face = result.descentTo("face").as(Employee.class);
+        EmployeeAssert.assertThat(face).hasFirstName("Michael").hasLastName("Sewell");
+    }
 }

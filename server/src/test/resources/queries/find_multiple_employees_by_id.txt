@@ -1,0 +1,11 @@
+{
+  brain: employee(id: "001") {
+      firstName, lastName
+  },
+  muscle: employee(id: "002") {
+      firstName, lastName
+  },
+  face: employee(id: "003") {
+      firstName, lastName
+  }
+}

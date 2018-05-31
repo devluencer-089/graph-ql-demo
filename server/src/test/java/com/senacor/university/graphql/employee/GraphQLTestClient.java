@@ -31,8 +31,16 @@ public class GraphQLTestClient {
         int serverPort = Integer.parseInt(environment.getProperty("local.server.port"));
 
         JsonPath jsonPath = execute(queryFileContents, serverPort);
+        checkForErrors(jsonPath);
 
         return new GraphQLResult(jsonPath);
+    }
+
+    private void checkForErrors(JsonPath jsonPath) {
+        Object errors = jsonPath.getJsonObject("errors");
+        if (errors != null) {
+            throw new AssertionError("Query returned errors: " + errors);
+        }
     }
 
     private JsonPath execute(String queryFileContents, int serverPort) {
