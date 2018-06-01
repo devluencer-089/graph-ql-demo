@@ -434,6 +434,273 @@ public final class EmployeesQuery: GraphQLQuery {
   }
 }
 
+public final class ProjectsQuery: GraphQLQuery {
+  public static let operationString =
+    "query Projects {\n  employees {\n    __typename\n    project {\n      __typename\n      id\n      cstLead {\n        __typename\n        firstName\n        lastName\n        age\n        gender\n      }\n      staff {\n        __typename\n        firstName\n        lastName\n        age\n        gender\n      }\n    }\n  }\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("employees", type: .nonNull(.list(.nonNull(.object(Employee.selections))))),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(employees: [Employee]) {
+      self.init(snapshot: ["__typename": "Query", "employees": employees.map { (value: Employee) -> Snapshot in value.snapshot }])
+    }
+
+    /// all employees
+    public var employees: [Employee] {
+      get {
+        return (snapshot["employees"] as! [Snapshot]).map { (value: Snapshot) -> Employee in Employee(snapshot: value) }
+      }
+      set {
+        snapshot.updateValue(newValue.map { (value: Employee) -> Snapshot in value.snapshot }, forKey: "employees")
+      }
+    }
+
+    public struct Employee: GraphQLSelectionSet {
+      public static let possibleTypes = ["Employee"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("project", type: .object(Project.selections)),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(project: Project? = nil) {
+        self.init(snapshot: ["__typename": "Employee", "project": project.flatMap { (value: Project) -> Snapshot in value.snapshot }])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      /// the project this employee is currently assigned to
+      public var project: Project? {
+        get {
+          return (snapshot["project"] as? Snapshot).flatMap { Project(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue?.snapshot, forKey: "project")
+        }
+      }
+
+      public struct Project: GraphQLSelectionSet {
+        public static let possibleTypes = ["Project"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("cstLead", type: .object(CstLead.selections)),
+          GraphQLField("staff", type: .list(.nonNull(.object(Staff.selections)))),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(id: GraphQLID, cstLead: CstLead? = nil, staff: [Staff]? = nil) {
+          self.init(snapshot: ["__typename": "Project", "id": id, "cstLead": cstLead.flatMap { (value: CstLead) -> Snapshot in value.snapshot }, "staff": staff.flatMap { (value: [Staff]) -> [Snapshot] in value.map { (value: Staff) -> Snapshot in value.snapshot } }])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return snapshot["id"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        /// person in charge of $$$
+        public var cstLead: CstLead? {
+          get {
+            return (snapshot["cstLead"] as? Snapshot).flatMap { CstLead(snapshot: $0) }
+          }
+          set {
+            snapshot.updateValue(newValue?.snapshot, forKey: "cstLead")
+          }
+        }
+
+        /// 🚣‍
+        public var staff: [Staff]? {
+          get {
+            return (snapshot["staff"] as? [Snapshot]).flatMap { (value: [Snapshot]) -> [Staff] in value.map { (value: Snapshot) -> Staff in Staff(snapshot: value) } }
+          }
+          set {
+            snapshot.updateValue(newValue.flatMap { (value: [Staff]) -> [Snapshot] in value.map { (value: Staff) -> Snapshot in value.snapshot } }, forKey: "staff")
+          }
+        }
+
+        public struct CstLead: GraphQLSelectionSet {
+          public static let possibleTypes = ["Employee"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("firstName", type: .nonNull(.scalar(String.self))),
+            GraphQLField("lastName", type: .nonNull(.scalar(String.self))),
+            GraphQLField("age", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("gender", type: .nonNull(.scalar(Gender.self))),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(firstName: String, lastName: String, age: Int, gender: Gender) {
+            self.init(snapshot: ["__typename": "Employee", "firstName": firstName, "lastName": lastName, "age": age, "gender": gender])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var firstName: String {
+            get {
+              return snapshot["firstName"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "firstName")
+            }
+          }
+
+          public var lastName: String {
+            get {
+              return snapshot["lastName"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "lastName")
+            }
+          }
+
+          public var age: Int {
+            get {
+              return snapshot["age"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "age")
+            }
+          }
+
+          public var gender: Gender {
+            get {
+              return snapshot["gender"]! as! Gender
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "gender")
+            }
+          }
+        }
+
+        public struct Staff: GraphQLSelectionSet {
+          public static let possibleTypes = ["Employee"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("firstName", type: .nonNull(.scalar(String.self))),
+            GraphQLField("lastName", type: .nonNull(.scalar(String.self))),
+            GraphQLField("age", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("gender", type: .nonNull(.scalar(Gender.self))),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(firstName: String, lastName: String, age: Int, gender: Gender) {
+            self.init(snapshot: ["__typename": "Employee", "firstName": firstName, "lastName": lastName, "age": age, "gender": gender])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var firstName: String {
+            get {
+              return snapshot["firstName"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "firstName")
+            }
+          }
+
+          public var lastName: String {
+            get {
+              return snapshot["lastName"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "lastName")
+            }
+          }
+
+          public var age: Int {
+            get {
+              return snapshot["age"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "age")
+            }
+          }
+
+          public var gender: Gender {
+            get {
+              return snapshot["gender"]! as! Gender
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "gender")
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 public struct EmployeeDetails: GraphQLFragment {
   public static let fragmentString =
     "fragment EmployeeDetails on Employee {\n  __typename\n  id\n  firstName\n  lastName\n  age\n  gender\n  projectId\n  project {\n    __typename\n    id\n  }\n}"

@@ -10,6 +10,26 @@ query Employees {
     }
 }
 
+query Projects {
+    employees {
+        project {
+            id
+            cstLead {
+                firstName
+                lastName
+                age
+                gender
+            }
+            staff {
+                firstName
+                lastName
+                age
+                gender
+            }
+        }
+    }
+}
+
 
 fragment EmployeeDetails on Employee {
     id
