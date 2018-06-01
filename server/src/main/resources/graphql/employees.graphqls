@@ -3,10 +3,13 @@ schema {
 }
 
 extend type Query {
+    # all employees
     employees: [Employee!]!
+    # employee by id
     employee(id: ID!): Employee
 }
 
+# an employee
 type Employee {
     id: ID!
     firstName: String!
@@ -14,6 +17,7 @@ type Employee {
     age: Int!
     gender: Gender!
     projectId: ID
+    # the project this employee is currently assigned to
     project: Project
 }
 

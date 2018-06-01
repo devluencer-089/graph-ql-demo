@@ -1,6 +1,8 @@
 type Project {
     id: ID!
+    # person in charge of $$$
     cstLead: Employee
+    # 🚣‍
     staff: [Employee!]
 }
 
