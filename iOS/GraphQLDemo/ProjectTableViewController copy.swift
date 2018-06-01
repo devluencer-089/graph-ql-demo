@@ -7,14 +7,16 @@ class ProjectTableViewController: UITableViewController {
         }
     }
     
+    private lazy var watchedQuery = apollo.watch(query: ProjectsQuery()) { [weak self] (result, error) in
+        if let error = error { print(error) }
+        
+        self?.projects = result?.data?.employees.compactMap { $0.project } ?? []
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        apollo.fetch(query: ProjectsQuery()) { [weak self] (result, error) in
-            if let error = error { print(error) }
-            
-            self?.projects = result?.data?.employees.compactMap { $0.project } ?? []
-        }
+        watchedQuery.refetch()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,6 +30,14 @@ class ProjectTableViewController: UITableViewController {
         
         cell.textLabel?.text = "\(project.id). CST-Lead: \(project.cstLead?.description ?? "?")"
         cell.detailTextLabel?.text = "\(project.staff?.count.description ?? "?") staffed"
+        cell.detailTextLabel?.text = {
+            guard let staff = project.staff else { return nil }
+            
+            let femaleCount = staff.filter { $0.gender == .female }.count
+            let maleCount = staff.filter { $0.gender == .male}.count
+            let remainingCount = staff.count - maleCount - femaleCount
+            return "\(String(repeating: "🚣‍♀️", count: femaleCount))\(String(repeating: "🚣‍♂️", count: maleCount))\(String(repeating: "🛶", count: remainingCount))"
+        }()
         cell.imageView?.image = #imageLiteral(resourceName: "Derelict House")
 
         return cell
@@ -36,6 +46,6 @@ class ProjectTableViewController: UITableViewController {
 
 extension ProjectsQuery.Data.Employee.Project.CstLead: CustomStringConvertible {
     public var description: String {
-        return "\(firstName) \(lastName) (\(age))"
+        return "\(firstName) \(lastName)"
     }
 }

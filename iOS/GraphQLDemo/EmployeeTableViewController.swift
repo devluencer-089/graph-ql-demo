@@ -1,19 +1,22 @@
 import UIKit
 
 class EmployeeTableViewController: UITableViewController {
-    var employees: [EmployeesQuery.Data.Employee] = [] {
+    private var employees: [EmployeesQuery.Data.Employee] = [] {
         didSet {
             tableView.reloadData()
         }
     }
     
+    private lazy var watchedQuery = apollo.watch(query: EmployeesQuery()) { [weak self] (result, error) in
+        if let error = error { print(error) }
+        
+        self?.employees = result?.data?.employees ?? []
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        apollo.fetch(query: EmployeesQuery()) { [weak self] (result, error) in
-            if let error = error { print(error) }
-            self?.employees = result?.data?.employees ?? []
-        }
+        watchedQuery.refetch()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
