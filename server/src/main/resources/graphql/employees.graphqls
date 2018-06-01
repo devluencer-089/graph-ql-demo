@@ -13,6 +13,8 @@ type Employee {
     lastName: String!
     age: Int!
     gender: Gender!
+    projectId: ID
+    project: Project
 }
 
 enum Gender {

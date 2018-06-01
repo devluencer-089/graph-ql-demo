@@ -1,4 +1,4 @@
-package com.senacor.university.graphql.employee;
+package com.senacor.university.graphql;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;

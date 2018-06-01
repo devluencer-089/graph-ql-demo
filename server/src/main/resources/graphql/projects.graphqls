@@ -1,0 +1,6 @@
+type Project {
+    id: ID!
+    cstLead: Employee
+    staff: [Employee!]
+}
+

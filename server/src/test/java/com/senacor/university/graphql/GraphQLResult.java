@@ -1,4 +1,4 @@
-package com.senacor.university.graphql.employee;
+package com.senacor.university.graphql;
 
 import io.restassured.path.json.JsonPath;
 
