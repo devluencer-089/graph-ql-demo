@@ -29,6 +29,7 @@ class ProjectResolver implements GraphQLResolver<Project> {
                 .gender(entity.getGender())
                 .age(entity.getAge())
                 .projectId(entity.getProjectId())
+                .project(null)
                 .build();
     }
 
