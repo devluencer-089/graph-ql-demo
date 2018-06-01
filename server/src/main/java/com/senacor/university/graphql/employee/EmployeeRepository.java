@@ -37,10 +37,10 @@ public class EmployeeRepository {
                 .findAny();
     }
 
-    public Optional<EmployeeEntity> findByProjectId(String projectId) {
+    public List<EmployeeEntity> findByProjectId(String projectId) {
         return employees.stream()
                 .filter(employee -> employee.getProjectId().equals(projectId))
-                .findAny();
+                .collect(toImmutableList());
     }
 
     public List<EmployeeEntity> findAll() {

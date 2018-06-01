@@ -109,6 +109,21 @@ public class EmployeesQueryIntegrationTest {
                 .hasId("005")
                 .hasFirstName("Hanna")
                 .hasLastName("Häusel");
+    }
 
+
+    @Test
+    public void itFindsAllStaffForAProject() throws IOException {
+
+        GraphQLResult result = client.executeQuery("single_employee_with_project_and_staff.txt");
+
+        Employee employee = result.descentTo("employee").as(Employee.class);
+        Project project = employee.getProject();
+        ProjectAssert.assertThat(project).hasId("001");
+
+        List<Employee> staff = project.getStaff();
+        assertThat(staff).hasSize(5)
+                .extracting("id")
+                .containsExactly("001", "002", "003", "004", "005");
     }
 }
