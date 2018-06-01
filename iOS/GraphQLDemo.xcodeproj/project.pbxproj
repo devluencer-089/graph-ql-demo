@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		B5DCF8EFD9300071D8A21ADC /* Pods_GraphQLDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F734921304D62EEF70367331 /* Pods_GraphQLDemo.framework */; };
 		C132179120C141410010331B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132179020C141410010331B /* AppDelegate.swift */; };
-		C132179320C141410010331B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132179220C141410010331B /* FirstViewController.swift */; };
-		C132179520C141410010331B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132179420C141410010331B /* SecondViewController.swift */; };
 		C132179820C141410010331B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132179620C141410010331B /* Main.storyboard */; };
 		C132179A20C141420010331B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C132179920C141420010331B /* Assets.xcassets */; };
 		C132179D20C141420010331B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132179B20C141420010331B /* LaunchScreen.storyboard */; };
 		C1A5C77920C14B0000F56504 /* Employee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = C1A5C77820C14B0000F56504 /* Employee.graphql */; };
+		C1A5C77D20C16E1600F56504 /* EmployeeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5C77C20C16E1600F56504 /* EmployeeTableViewController.swift */; };
+		C1A5C77F20C1772A00F56504 /* Apollo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A5C77E20C1772A00F56504 /* Apollo.swift */; };
 		C1DE165520C14638001825A3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DE165420C14637001825A3 /* API.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +22,13 @@
 		02959A20F715E5437BC90E4A /* Pods-GraphQLDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphQLDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-GraphQLDemo/Pods-GraphQLDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C132178D20C141410010331B /* GraphQLDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphQLDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C132179020C141410010331B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C132179220C141410010331B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		C132179420C141410010331B /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C132179720C141410010331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C132179920C141420010331B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C132179C20C141420010331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C132179E20C141420010331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1A5C77820C14B0000F56504 /* Employee.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Employee.graphql; sourceTree = "<group>"; };
+		C1A5C77C20C16E1600F56504 /* EmployeeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewController.swift; sourceTree = "<group>"; };
+		C1A5C77E20C1772A00F56504 /* Apollo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apollo.swift; sourceTree = "<group>"; };
 		C1DE165420C14637001825A3 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		DE6784CD1C649919B4163040 /* Pods-GraphQLDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraphQLDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GraphQLDemo/Pods-GraphQLDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F734921304D62EEF70367331 /* Pods_GraphQLDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraphQLDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,13 +86,13 @@
 			children = (
 				C1DE165420C14637001825A3 /* API.swift */,
 				C132179020C141410010331B /* AppDelegate.swift */,
-				C132179220C141410010331B /* FirstViewController.swift */,
-				C132179420C141410010331B /* SecondViewController.swift */,
 				C132179620C141410010331B /* Main.storyboard */,
 				C132179920C141420010331B /* Assets.xcassets */,
 				C132179B20C141420010331B /* LaunchScreen.storyboard */,
 				C132179E20C141420010331B /* Info.plist */,
 				C1A5C77820C14B0000F56504 /* Employee.graphql */,
+				C1A5C77C20C16E1600F56504 /* EmployeeTableViewController.swift */,
+				C1A5C77E20C1772A00F56504 /* Apollo.swift */,
 			);
 			path = GraphQLDemo;
 			sourceTree = "<group>";
@@ -225,10 +225,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C132179520C141410010331B /* SecondViewController.swift in Sources */,
 				C132179120C141410010331B /* AppDelegate.swift in Sources */,
 				C1DE165520C14638001825A3 /* API.swift in Sources */,
-				C132179320C141410010331B /* FirstViewController.swift in Sources */,
+				C1A5C77D20C16E1600F56504 /* EmployeeTableViewController.swift in Sources */,
+				C1A5C77F20C1772A00F56504 /* Apollo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
