@@ -1,0 +1,44 @@
+query Employee($id: ID!) {
+    employee(id: $id) {
+        ...EmployeeDetails
+    }
+}
+
+query Employees {
+    employees {
+        ...EmployeeDetails
+    }
+}
+
+query Projects {
+    employees {
+        project {
+            id
+            cstLead {
+                firstName
+                lastName
+                age
+                gender
+            }
+            staff {
+                firstName
+                lastName
+                age
+                gender
+            }
+        }
+    }
+}
+
+
+fragment EmployeeDetails on Employee {
+    id
+    firstName
+    lastName
+    age
+    gender
+    projectId
+    project {
+        id
+    }
+}
