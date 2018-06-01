@@ -1,6 +1,10 @@
 package com.senacor.university.graphql.employee;
 
 
+import com.senacor.university.graphql.GraphQLResult;
+import com.senacor.university.graphql.GraphQLTestClient;
+import com.senacor.university.graphql.project.Project;
+import com.senacor.university.graphql.project.ProjectAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,5 +93,37 @@ public class EmployeesQueryIntegrationTest {
         assertThat(result.descentTo("brain").as(Employee.class)).isNotNull();
         assertThat(result.descentTo("face").as(Employee.class)).isNotNull();
         assertThat(result.descentTo("muscle").as(Employee.class)).isNotNull();
+    }
+
+    @Test
+    public void itAddsProjectInformationToEmployeeData() throws IOException {
+
+        GraphQLResult result = client.executeQuery("single_employee_with_project.txt");
+
+        Employee employee = result.descentTo("employee").as(Employee.class);
+        Project project = employee.getProject();
+        ProjectAssert.assertThat(project).hasId("001");
+
+        Employee cstLead = project.getCstLead();
+        EmployeeAssert.assertThat(cstLead)
+                .hasId("005")
+                .hasFirstName("Hanna")
+                .hasLastName("Häusel");
+    }
+
+
+    @Test
+    public void itFindsAllStaffForAProject() throws IOException {
+
+        GraphQLResult result = client.executeQuery("single_employee_with_project_and_staff.txt");
+
+        Employee employee = result.descentTo("employee").as(Employee.class);
+        Project project = employee.getProject();
+        ProjectAssert.assertThat(project).hasId("001");
+
+        List<Employee> staff = project.getStaff();
+        assertThat(staff).hasSize(5)
+                .extracting("id")
+                .containsExactly("001", "002", "003", "004", "005");
     }
 }

@@ -1,9 +1,9 @@
 {
     employees {
-        id,
-        firstName,
-        lastName,
-        age,
+        id
+        firstName
+        lastName
+        age
         gender
     }
 }
