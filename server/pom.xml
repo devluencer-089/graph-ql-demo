@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.senacor.research</groupId>
-	<artifactId>graphql-demo-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <groupId>com.senacor.research</groupId>
+    <artifactId>graphql-demo-server</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>graph-ql-server</name>
-	<description>Demo server for GraphQL</description>
+    <name>graph-ql-server</name>
+    <description>Demo server for GraphQL</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+    <properties>
+        <java.version>1.8</java.version>
 
-		<graphql.java.version>4.2.0</graphql.java.version>
-		<graphql.starter.version>4.2.0</graphql.starter.version>
-		<graphql.tools.version>5.1.0</graphql.tools.version>
-	</properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+        <graphql.java.version>4.2.0</graphql.java.version>
+        <graphql.starter.version>4.2.0</graphql.starter.version>
+        <graphql.tools.version>5.1.0</graphql.tools.version>
 
-		<!-- GraphQL -->
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>${graphql.starter.version}</version>
-		</dependency>
-		<!-- GraphiQL tool -->
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>${graphql.starter.version}</version>
-		</dependency>
-        <!-- Voyager tool -->
+        <junit-jupiter.version>5.2.0</junit-jupiter.version>
+        <junit-platform.version>1.2.0</junit-platform.version>
+
+        <rest-assured.version>3.1.0</rest-assured.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- GraphQL -->
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>${graphql.starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphiql-spring-boot-starter</artifactId>
+            <version>${graphql.starter.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>voyager-spring-boot-starter</artifactId>
             <version>${graphql.starter.version}</version>
         </dependency>
-
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java-tools</artifactId>
-			<version>${graphql.tools.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-java-tools</artifactId>
+            <version>${graphql.tools.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -69,26 +70,49 @@
         </dependency>
 
         <dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>25.0-jre</version>
-		</dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.0-jre</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-engine</artifactId>
+            <version>${junit-platform.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>3.1.0</version>
+            <version>${rest-assured.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-path</artifactId>
-            <version>3.1.0</version>
+            <version>${rest-assured.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
@@ -96,14 +120,34 @@
             <version>3.8.0</version>
             <scope>test</scope>
         </dependency>
-	</dependencies>
 
-	<build>
-		<plugins>
+    </dependencies>
 
+    <build>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>${junit-platform.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
@@ -130,35 +174,25 @@
                 </executions>
 
                 <configuration>
-
-                    <!-- List the package of classes you want to generate assertions for -->
-                    <!--<packages>-->
-                        <!--<param>com.senacor.university.graphql.employee</param>-->
-                    <!--</packages>-->
-
                     <!-- List the classes you want to generate assertions for -->
                     <classes>
                         <param>com.senacor.university.graphql.employee.Employee</param>
                         <param>com.senacor.university.graphql.project.Project</param>
                     </classes>
 
-                    <!--<targetDir>src/test/generated-assertions</targetDir>-->
-
                     <!-- If true, all files in targetDir are removed before generating new ones (default to false) -->
                     <cleanTargetDir>true</cleanTargetDir>
-
 
                     <generateAssertions>true</generateAssertions>
                     <generateBddAssertions>true</generateBddAssertions>
                     <generateSoftAssertions>true</generateSoftAssertions>
-                    <generateJUnitSoftAssertions>true</generateJUnitSoftAssertions>
+                    <generateJUnitSoftAssertions>false</generateJUnitSoftAssertions>
 
                     <writeReportInFile>target/assertions-generation-report.txt</writeReportInFile>
 
                 </configuration>
             </plugin>
-		</plugins>
-	</build>
-
+        </plugins>
+    </build>
 
 </project>
