@@ -43,6 +43,13 @@ public class EmployeeRepository {
                 .collect(toImmutableList());
     }
 
+
+    public List<EmployeeEntity> findByGender(Gender gender) {
+        return employees.stream()
+                .filter(employee -> employee.getGender().equals(gender))
+                .collect(toImmutableList());
+    }
+
     public List<EmployeeEntity> findAll() {
         return employees.stream().collect(toImmutableList());
     }
