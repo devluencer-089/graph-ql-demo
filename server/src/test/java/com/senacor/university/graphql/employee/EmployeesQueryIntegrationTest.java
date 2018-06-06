@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import static graphql.ErrorType.DataFetchingException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -66,11 +67,11 @@ public class EmployeesQueryIntegrationTest {
             List<Employee> employees = result.descentTo("employees").asListOf(Employee.class);
             assertThat(employees).hasSize(1)
                     .first().satisfies(femaleEmployee -> {
-                    EmployeeAssert.assertThat(femaleEmployee)
-                    .hasId("005")
-                    .hasFirstName("Hanna")
-                    .hasLastName("Häusel")
-                    .hasGender(Gender.FEMALE);
+                EmployeeAssert.assertThat(femaleEmployee)
+                        .hasId("005")
+                        .hasFirstName("Hanna")
+                        .hasLastName("Häusel")
+                        .hasGender(Gender.FEMALE);
             });
         }
     }
@@ -186,5 +187,56 @@ public class EmployeesQueryIntegrationTest {
 
     }
 
+    @Nested
+    class Errors {
+
+        @Test
+        public void errorsProduceStatusCode200JustLikeSuccessfulQueries() throws IOException {
+            GraphQLResult result = client.executeQuery(
+                    "find_employee_that_does_not_exist.txt",
+                    "NonExistentEmployee",
+                    Collections.emptyMap());
+
+            assertThat(result.getStatusCode()).isEqualTo(200);
+
+        }
+
+        @Test
+        public void errorsResideInTheErrorArrayRightUnderTheRootObject() throws IOException {
+            GraphQLResult result = client.executeQuery("find_employee_that_does_not_exist.txt");
+
+            assertThat(result.errors())
+                    .hasSize(1)
+                    .first()
+                    .hasFieldOrPropertyWithValue("message", "Exception while fetching data (/employee) : customer with id 006 not found")
+                    .hasFieldOrProperty("path")
+                    .hasFieldOrPropertyWithValue("extensions", null)
+                    .hasFieldOrProperty("locations")
+                    .hasFieldOrPropertyWithValue("errorType", DataFetchingException);
+        }
+
+
+        @Test
+        public void extensionsHoldOptionalInformationRelatedToTheError() {
+            //TODO
+        }
+
+        @Test
+        public void partialResultsWithErrorsAreAllowed() throws IOException {
+            GraphQLResult result = client.executeQuery("partial_errors.txt");
+
+            Employee first = result.descentTo("first").as(Employee.class);
+            assertThat(first).isNotNull();
+
+            Employee second = result.descentTo("second").as(Employee.class);
+            assertThat(second).isNull();
+
+            assertThat(result.errors())
+                    .hasSize(1)
+                    .first()
+                    .hasFieldOrPropertyWithValue("message", "Exception while fetching data (/second) : customer with id 009 not found");
+
+        }
+    }
 
 }

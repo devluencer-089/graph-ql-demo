@@ -1,0 +1,5 @@
+query NonExistentEmployee {
+    employee(id: "006") {
+        id
+    }
+}
