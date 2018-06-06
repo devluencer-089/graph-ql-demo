@@ -50,6 +50,12 @@ public class EmployeeRepository {
                 .collect(toImmutableList());
     }
 
+    public List<EmployeeEntity> findOlderThan(int age) {
+        return employees.stream()
+                .filter(employee -> employee.getAge() > age)
+                .collect(toImmutableList());
+    }
+
     public List<EmployeeEntity> findAll() {
         return employees.stream().collect(toImmutableList());
     }

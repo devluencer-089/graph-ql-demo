@@ -1,0 +1,9 @@
+{
+    employees(withGender: FEMALE) {
+        id
+        firstName
+        lastName
+        age
+        gender
+    }
+}

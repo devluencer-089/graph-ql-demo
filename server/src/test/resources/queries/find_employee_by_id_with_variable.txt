@@ -1,0 +1,7 @@
+query FindEmployeeById($employeeId: ID!) {
+  employee(id: $employeeId) {
+       id
+       firstName
+       lastName
+  }
+}

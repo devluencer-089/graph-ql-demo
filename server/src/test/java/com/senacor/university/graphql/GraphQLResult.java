@@ -33,7 +33,15 @@ public class GraphQLResult {
         return jsonPath.getObject(rootPath, clazz);
     }
 
-    public JsonPath jsonPath() {
+    public String asString() {
+        return jsonPath.getString(rootPath);
+    }
+
+    public int asInt() {
+        return jsonPath.getInt(rootPath);
+    }
+
+    public JsonPath getJsonPath() {
         return jsonPath;
     }
 }

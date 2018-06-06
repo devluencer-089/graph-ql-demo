@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,19 +29,23 @@ public class EmployeesQueryIntegrationTest {
 
 
     @Nested
-    class RootQueries {
+    class Fields {
 
         @Test
-        public void itLoadsAllEmployees() throws IOException {
+        public void fieldsCanBeQueriedAndTraversed() throws IOException {
 
             GraphQLResult result = client.executeQuery("all_employees.txt");
 
             List<Employee> employees = result.descentTo("employees").asListOf(Employee.class);
             assertThat(employees).hasSize(5);
         }
+    }
+
+    @Nested
+    class Arguments {
 
         @Test
-        public void itFindsASingleEmployeeById() throws IOException {
+        public void everyFieldCanGetItsOwnSetOfArguments() throws IOException {
 
             GraphQLResult result = client.executeQuery("find_employee_by_id.txt");
 
@@ -54,19 +59,34 @@ public class EmployeesQueryIntegrationTest {
         }
 
         @Test
-        public void explicitOperationNamesAreSupported() throws IOException {
+        public void argumentsAreBeOptionalIfDefinedAsOptionalInTheSchemaAndCanHaveDefaultValues() throws IOException {
 
-            GraphQLResult result = client.executeQuery("query_with_operation_name.txt");
+            GraphQLResult result = client.executeQuery("all_employees_filtered_by_gender.txt");
 
-            assertThat(result.descentTo("brain").as(Employee.class)).isNotNull();
-            assertThat(result.descentTo("face").as(Employee.class)).isNotNull();
-            assertThat(result.descentTo("muscle").as(Employee.class)).isNotNull();
+            List<Employee> employees = result.descentTo("employees").asListOf(Employee.class);
+            assertThat(employees).hasSize(1)
+                    .first().satisfies(femaleEmployee -> {
+                    EmployeeAssert.assertThat(femaleEmployee)
+                    .hasId("005")
+                    .hasFirstName("Hanna")
+                    .hasLastName("Häusel")
+                    .hasGender(Gender.FEMALE);
+            });
         }
     }
 
 
     @Nested
     class Aliases {
+
+        @Test
+        public void aliasesLetYouRenameFields() throws IOException {
+
+            GraphQLResult result = client.executeQuery("find_employee_by_id_with_alias.txt");
+
+            assertThat(result.descentTo("code_monkey.name").asString()).isEqualTo("Tran");
+
+        }
 
         @Test
         public void aliasesAreRequiredIfResultIsAmbiguous() throws IOException {
@@ -93,6 +113,7 @@ public class EmployeesQueryIntegrationTest {
         }
     }
 
+
     @Nested
     class Fragments {
 
@@ -109,6 +130,22 @@ public class EmployeesQueryIntegrationTest {
 
             Employee face = result.descentTo("face").as(Employee.class);
             EmployeeAssert.assertThat(face).hasFirstName("Michael").hasLastName("Sewell");
+        }
+    }
+
+
+    @Nested
+    class Variables {
+
+        @Test
+        public void namedOperationsCanAlsoAcceptVariables() throws IOException {
+
+            GraphQLResult result = client.executeQuery(
+                    "find_employee_by_id_with_variable.txt",
+                    "FindEmployeeById",
+                    Collections.singletonMap("employeeId", "001"));
+
+            assertThat(result.descentTo("employee").as(Employee.class)).isNotNull();
         }
     }
 
