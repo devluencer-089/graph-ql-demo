@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import React from 'react';
+import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withStyles } from 'material-ui/styles';
 
 import EmployeeCard from './EmployeeCard';
 
 export const query = gql`
-  query EmployeeQuery {
-    version
-    allEmployees {
-      id
-      level
-      firstname
-      lastname
-      phoneNumber
-      projects {
-        name
-      }
-    }
+  {
+    query
+    goes
+    here
   }
 `;
 
@@ -30,24 +22,10 @@ const styles = theme => ({
   }
 });
 
-export class Employees extends Component {
-  render() {
-    const { data: { allEmployees, loading }, classes } = this.props;
+function Employees(props) {
+  // return <Query query={}/>
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
-    return (
-      <div className={classes.list}>
-        {allEmployees.map(employee => (
-          <div key={employee.id}>
-            <EmployeeCard employee={employee} />
-          </div>
-        ))}
-      </div>
-    );
-  }
+  return <div />;
 }
 
-export default graphql(query)(withStyles(styles)(Employees));
+export default withStyles(styles)(Employees);

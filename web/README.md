@@ -1,11 +1,32 @@
-# Web application
+# GraphQL React Client
 
-`node` and `yarn` must be installed.
+Client is based on React and Apollo-Framework.
+
+## Installation Guide
+
+### Yarn Package Manager
+Follow this guide: https://yarnpkg.com/lang/en/docs/install/
+
+or install via npm (though it is not recommended by yarn but it's easier)
+```shell
+npm install --global yarn
+
+# Test yarn with following command
+yarn --version
+```
+
+### Node JS
+Install Node Js version >= 8.11.2
+
+You can use the official installation guide:
+https://nodejs.org/en/
+
+or https://github.com/creationix/nvm if you want to have multiple node versions on your computer.
+
 
 To run the application:
-
 ```shell
-npm install
+yarn install
 yarn start
 ```
 
@@ -15,11 +36,22 @@ The web app will be available at <http://localhost:3200>.
 
 Uses the Apollo GraphQL Framework according to <https://www.apollographql.com/docs/react/essentials/get-started.html>.
 
-Apollo Boost is like Spring Boot. It allows us to use a preconfigured Apollo client.
+It allows us to use a preconfigured Apollo client.
 
-## GraphQL Testing Issues
+## Important folders for your tasks
+Following directories are important for this session. 
+```
+- src
+  - components
+    + employees
+    + projects 
+```
+Everything else can be ignored.
 
-https://github.com/graphql/graphql-js/issues/1248
-https://github.com/apollographql/graphql-tag/issues/155
-
-That's why we have to pin graphql-js to 0.13.0 right now...
+## Tasks
+### Task 1
+Display a list of employees!
+### Task 2
+Display a specific employee!
+### Task 3
+Get two projects with one query!
