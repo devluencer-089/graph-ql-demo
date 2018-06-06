@@ -44,9 +44,13 @@ mvn heroku:deploy
 ```
 Open [https://graphicademy.herokuapp.com/graphiql]
 
-## Technologies Inside
-* Spring Boot 2.x
-* GraphQL-Spring-Boot-Starter
-  * Schema-files: resources/*.graphqls
-  * every *.graphqls file will be evaluated on the classpath
+## TODOs
+- Exception Handling
+- Validation
+- custom Scalar Types: Date, Email
+- mutations
+- subscriptions
+- conversion into different units
+- https://graphql.org/learn/schema/#interfaces
+- https://graphql.org/learn/schema/#union-types
 
