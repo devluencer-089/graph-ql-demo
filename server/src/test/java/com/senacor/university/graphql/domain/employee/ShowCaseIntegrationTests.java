@@ -5,7 +5,6 @@ import com.senacor.university.graphql.GraphQLResult;
 import com.senacor.university.graphql.GraphQLTestClient;
 import com.senacor.university.graphql.domain.project.Project;
 import com.senacor.university.graphql.domain.project.ProjectAssert;
-import com.senacor.university.graphql.scalars.Email;
 import graphql.ErrorType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -27,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
 @DisplayName("Employee Integration Tests")
-public class EmployeesQueryIntegrationTest {
+public class ShowCaseIntegrationTests {
 
     @Autowired
     private GraphQLTestClient client;
@@ -43,6 +42,15 @@ public class EmployeesQueryIntegrationTest {
 
             List<Employee> employees = result.descentTo("employees").asListOf(Employee.class);
             assertThat(employees).hasSize(5);
+        }
+
+        @Test
+        public void fieldsCanBeQueriedAndTraversed2() throws IOException {
+
+            GraphQLResult result = client.executeQuery("all_projects.txt");
+
+            List<Project> projects = result.descentTo("projects").asListOf(Project.class);
+            assertThat(projects).hasSize(5);
         }
     }
 
@@ -63,6 +71,21 @@ public class EmployeesQueryIntegrationTest {
                     .hasGender(Gender.MALE)
                     .hasEmployedSince(LocalDate.of(2010, Month.JANUARY, 1))
                     .hasAge(31);
+        }
+
+        @Test
+        public void everyFieldCanGetItsOwnSetOfArguments2() throws IOException {
+
+            GraphQLResult result = client.executeQuery("find_project_by_id.txt");
+
+            Project project = result.descentTo("project").as(Project.class);
+            ProjectAssert.assertThat(project).hasId("001");
+
+            Employee employee = result.descentTo("project.cstLead").as(Employee.class);
+            EmployeeAssert.assertThat(employee).hasId("005");
+
+            List<Employee> staff = result.descentTo("project.staff").asListOf(Employee.class);
+            assertThat(staff).hasSize(5);
         }
 
         @Test

@@ -1,4 +1,4 @@
-package com.senacor.university.graphql.scalars;
+package com.senacor.university.graphql.domain.employee;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
@@ -21,7 +21,7 @@ public class Email {
     }
 
     public static Email from(String value) {
-        return new Email(value);
+        return new Email(value.trim());
     }
 
     public boolean isValid() {

@@ -1,6 +1,5 @@
 package com.senacor.university.graphql.domain.employee;
 
-import com.senacor.university.graphql.scalars.Email;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Wither;

@@ -179,6 +179,7 @@
                     <!-- List the classes you want to generate assertions for -->
                     <classes>
                         <param>com.senacor.university.graphql.domain.employee.Employee</param>
+                        <param>com.senacor.university.graphql.domain.employee.Email</param>
                         <param>com.senacor.university.graphql.domain.project.Project</param>
                     </classes>
 

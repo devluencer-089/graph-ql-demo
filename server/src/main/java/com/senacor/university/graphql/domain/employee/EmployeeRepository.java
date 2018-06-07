@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
-import static com.senacor.university.graphql.scalars.Email.from;
+import static com.senacor.university.graphql.domain.employee.Email.from;
 import static java.time.Month.APRIL;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JANUARY;

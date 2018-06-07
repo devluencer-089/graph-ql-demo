@@ -2,6 +2,7 @@ package com.senacor.university.graphql.scalars;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.senacor.university.graphql.domain.employee.Email;
 import graphql.language.ScalarTypeDefinition;
 import graphql.language.StringValue;
 import graphql.schema.Coercing;

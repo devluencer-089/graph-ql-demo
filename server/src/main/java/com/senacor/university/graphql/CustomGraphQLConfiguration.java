@@ -11,7 +11,7 @@ import com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration;
 import com.senacor.university.graphql.error.CustomDataFetcherExceptionHandler;
 import com.senacor.university.graphql.error.CustomGraphQLErrorHandler;
 import com.senacor.university.graphql.json.SourceLocationDeserializer;
-import com.senacor.university.graphql.scalars.Email;
+import com.senacor.university.graphql.domain.employee.Email;
 import com.senacor.university.graphql.scalars.EmailScalarType;
 import graphql.analysis.MaxQueryComplexityInstrumentation;
 import graphql.analysis.MaxQueryDepthInstrumentation;
