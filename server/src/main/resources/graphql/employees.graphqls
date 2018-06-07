@@ -29,4 +29,7 @@ enum Gender {
     MALE,
 }
 
+
 scalar Email
+# java.time.LocalDate implementation
+scalar LocalDate

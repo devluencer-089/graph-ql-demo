@@ -8,11 +8,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import com.google.common.collect.Sets;
 import com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration;
+import com.senacor.university.graphql.domain.employee.Email;
 import com.senacor.university.graphql.error.CustomDataFetcherExceptionHandler;
 import com.senacor.university.graphql.error.CustomGraphQLErrorHandler;
 import com.senacor.university.graphql.json.SourceLocationDeserializer;
-import com.senacor.university.graphql.domain.employee.Email;
 import com.senacor.university.graphql.scalars.EmailScalarType;
+import com.senacor.university.graphql.scalars.LocalDataScalarType;
 import graphql.analysis.MaxQueryComplexityInstrumentation;
 import graphql.analysis.MaxQueryDepthInstrumentation;
 import graphql.execution.AsyncExecutionStrategy;
@@ -117,6 +118,11 @@ public class CustomGraphQLConfiguration {
     @Bean
     EmailScalarType emailScalarType(ObjectMapper objectMapper) {
         return new EmailScalarType(objectMapper);
+    }
+
+    @Bean
+    LocalDataScalarType localDataScalarType(ObjectMapper objectMapper) {
+        return new LocalDataScalarType(objectMapper);
     }
 
 }

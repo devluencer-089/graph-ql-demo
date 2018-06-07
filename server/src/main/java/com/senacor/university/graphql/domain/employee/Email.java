@@ -58,7 +58,7 @@ public class Email {
 
         @Override
         public void serialize(Email email, JsonGenerator jgen, SerializerProvider provider) throws IOException {
-            jgen.writeRawValue(email.getValue());
+            jgen.writeString(email.getValue());
         }
     }
 

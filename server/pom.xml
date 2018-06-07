@@ -60,11 +60,6 @@
             <version>${graphql.starter.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.zhokhov.graphql</groupId>
-            <artifactId>graphql-datetime-spring-boot-starter</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java-tools</artifactId>
             <version>${graphql.tools.version}</version>
