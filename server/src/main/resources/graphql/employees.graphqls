@@ -4,7 +4,12 @@ schema {
 
 extend type Query {
     # all employees
-    employees(withGender: Gender, olderThan: Int = 0): [Employee!]
+    employees(
+        withGender: Gender,
+        # inclusive
+        olderThan: Int = 0,
+        # max query return size
+        limit: Int = 100): [Employee!]
     # employee by id
     employee(id: ID!): Employee
 }

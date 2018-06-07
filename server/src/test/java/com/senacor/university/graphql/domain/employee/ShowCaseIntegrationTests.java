@@ -108,7 +108,7 @@ public class ShowCaseIntegrationTests {
         public void variablesCanHaveArgumentsToo() throws IOException {
 
             GraphQLResult result = client.executeQuery("all_employee_by_id_with_private_and_business_email.txt");
-            
+
             assertThat(result.descentTo("employee.privateMail").asString()).endsWith("@googlemail.com");
             assertThat(result.descentTo("employee.businessMail").asString()).endsWith("@senacor.com");
         }
@@ -294,6 +294,31 @@ public class ShowCaseIntegrationTests {
                     .first()
                     .hasFieldOrPropertyWithValue("message", "maximum query complexity exceeded 236 > 200")
                     .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
+
+        }
+
+
+        @Test
+        public void queryDepthCanBeLimited() throws IOException {
+            GraphQLResult result = client.executeQuery("query_exceeding_configured_depth.txt");
+
+            assertThat(result.errors()).hasSize(1)
+                    .first()
+                    .hasFieldOrPropertyWithValue("message", "maximum query depth exceeded 22 > 20")
+                    .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
+
+
+        }
+    }
+
+    @Nested
+    class Slicing {
+
+        @Test
+        public void queryCanBeLimited() throws IOException {
+            GraphQLResult result = client.executeQuery("all_employees_limit_3.txt");
+
+            assertThat(result.descentTo("employees").asListOf(Employee.class)).hasSize(3);
 
         }
 
