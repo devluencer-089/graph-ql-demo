@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,6 +59,7 @@ public class EmployeesQueryIntegrationTest {
                     .hasFirstName("Si")
                     .hasLastName("Tran")
                     .hasGender(Gender.MALE)
+                    .hasEmployedSince(LocalDate.of(2010, Month.JANUARY, 1))
                     .hasAge(31);
         }
 

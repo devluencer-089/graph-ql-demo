@@ -20,6 +20,7 @@ type Employee {
     projectId: ID
     # the project this employee is currently assigned to
     project: Project
+    employedSince: LocalDate!
 }
 
 enum Gender {
