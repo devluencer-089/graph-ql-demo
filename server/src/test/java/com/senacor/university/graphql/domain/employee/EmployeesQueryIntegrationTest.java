@@ -255,7 +255,7 @@ public class EmployeesQueryIntegrationTest {
 
             assertThat(result.errors()).hasSize(1)
                     .first()
-                    .hasFieldOrPropertyWithValue("message", "maximum query complexity exceeded 22 > 20")
+                    .hasFieldOrPropertyWithValue("message", "maximum query complexity exceeded 236 > 200")
                     .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
 
         }
@@ -267,7 +267,7 @@ public class EmployeesQueryIntegrationTest {
 
             assertThat(result.errors()).hasSize(1)
                     .first()
-                    .hasFieldOrPropertyWithValue("message", "maximum query depth exceeded 6 > 4")
+                    .hasFieldOrPropertyWithValue("message", "maximum query depth exceeded 22 > 20")
                     .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
 
 

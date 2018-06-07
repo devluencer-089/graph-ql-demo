@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import com.google.common.collect.Sets;
 import com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration;
 import com.senacor.university.graphql.error.CustomDataFetcherExceptionHandler;
 import com.senacor.university.graphql.error.CustomGraphQLErrorHandler;
@@ -14,6 +15,10 @@ import graphql.execution.AsyncExecutionStrategy;
 import graphql.execution.ExecutionStrategy;
 import graphql.execution.instrumentation.ChainedInstrumentation;
 import graphql.language.SourceLocation;
+import graphql.schema.GraphQLFieldDefinition;
+import graphql.schema.GraphQLList;
+import graphql.schema.GraphQLObjectType;
+import graphql.schema.GraphQLOutputType;
 import graphql.servlet.GraphQLServletListener;
 import graphql.servlet.ObjectMapperConfigurer;
 import org.slf4j.Logger;
@@ -57,7 +62,18 @@ public class CustomGraphQLConfiguration {
 
     @Bean
     ChainedInstrumentation customInstrumentation() {
-        return new ChainedInstrumentation(asList(new MaxQueryComplexityInstrumentation(maxComplexity), new MaxQueryDepthInstrumentation(maxDepth)));
+        return new ChainedInstrumentation(asList(
+                new MaxQueryDepthInstrumentation(maxDepth),
+                new MaxQueryComplexityInstrumentation(maxComplexity, (environment, childComplexity) -> {
+                    GraphQLFieldDefinition fieldDefinition = environment.getFieldDefinition();
+                    GraphQLOutputType type = fieldDefinition.getType();
+                    if (type instanceof GraphQLObjectType && Sets.newHashSet("Employee", "Project").contains(type.getName())) {
+                        return 15 + childComplexity;
+                    } else if (type instanceof GraphQLList && fieldDefinition.getName().equals("staff")) {
+                        return 100 + childComplexity;
+                    }
+                    return 1 + childComplexity;
+                })));
     }
 
     @Bean
