@@ -1,4 +1,4 @@
-package com.senacor.university.graphql.employee;
+package com.senacor.university.graphql.domain.employee;
 
 public class EmployeeNotFoundException extends RuntimeException {
 

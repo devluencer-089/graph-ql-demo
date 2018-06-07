@@ -1,10 +1,10 @@
-package com.senacor.university.graphql.employee;
+package com.senacor.university.graphql.domain.employee;
 
 
 import com.senacor.university.graphql.GraphQLResult;
 import com.senacor.university.graphql.GraphQLTestClient;
-import com.senacor.university.graphql.project.Project;
-import com.senacor.university.graphql.project.ProjectAssert;
+import com.senacor.university.graphql.domain.project.Project;
+import com.senacor.university.graphql.domain.project.ProjectAssert;
 import graphql.ErrorType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -160,11 +160,10 @@ public class EmployeesQueryIntegrationTest {
 
             GraphQLResult result = client.executeQuery("single_employee_with_project.txt");
 
-            Employee employee = result.descentTo("employee").as(Employee.class);
-            Project project = employee.getProject();
+            Project project  = result.descentTo("employee.project").as(Project.class);
             ProjectAssert.assertThat(project).hasId("001");
 
-            Employee cstLead = project.getCstLead();
+            Employee cstLead = result.descentTo("employee.project.cstLead").as(Employee.class);
             EmployeeAssert.assertThat(cstLead)
                     .hasId("005")
                     .hasFirstName("Hanna")
@@ -176,11 +175,10 @@ public class EmployeesQueryIntegrationTest {
 
             GraphQLResult result = client.executeQuery("single_employee_with_project_and_staff.txt");
 
-            Employee employee = result.descentTo("employee").as(Employee.class);
-            Project project = employee.getProject();
+            Project project  = result.descentTo("employee.project").as(Project.class);
             ProjectAssert.assertThat(project).hasId("001");
 
-            List<Employee> staff = project.getStaff();
+            List<Employee> staff = result.descentTo("employee.project.staff").asListOf(Employee.class);
             assertThat(staff).hasSize(5)
                     .extracting("id")
                     .containsExactly("001", "002", "003", "004", "005");

@@ -173,8 +173,8 @@
                 <configuration>
                     <!-- List the classes you want to generate assertions for -->
                     <classes>
-                        <param>com.senacor.university.graphql.employee.Employee</param>
-                        <param>com.senacor.university.graphql.project.Project</param>
+                        <param>com.senacor.university.graphql.domain.employee.Employee</param>
+                        <param>com.senacor.university.graphql.domain.project.Project</param>
                     </classes>
 
                     <!-- If true, all files in targetDir are removed before generating new ones (default to false) -->

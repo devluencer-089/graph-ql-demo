@@ -1,6 +1,5 @@
-package com.senacor.university.graphql.employee;
+package com.senacor.university.graphql.domain.employee;
 
-import com.senacor.university.graphql.project.Project;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Wither;
@@ -15,5 +14,4 @@ public class Employee {
     private int age;
     private Gender gender;
     private String projectId;
-    private Project project;
 }

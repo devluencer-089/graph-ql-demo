@@ -1,4 +1,4 @@
-package com.senacor.university.graphql.project;
+package com.senacor.university.graphql.domain.project;
 
 import com.google.common.collect.ImmutableSet;
 import org.springframework.stereotype.Component;
@@ -14,31 +14,31 @@ import static com.google.common.collect.ImmutableSet.toImmutableSet;
 @Component
 public class ProjectRepository {
 
-    private final Set<ProjectEntity> projects;
+    private final Set<Project> projects;
 
     {
         projects = ImmutableSet.of(
-                ProjectEntity.builder()
+                Project.builder()
                         .id("001").projectCode("HRE").cstLeadId("005").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                ProjectEntity.builder()
+                Project.builder()
                         .id("002").projectCode("BAW").cstLeadId("004").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                ProjectEntity.builder()
+                Project.builder()
                         .id("003").projectCode("BDB").cstLeadId("003").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                ProjectEntity.builder()
+                Project.builder()
                         .id("004").projectCode("AOK").cstLeadId("002").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                ProjectEntity.builder()
+                Project.builder()
                         .id("005").projectCode("TEB").cstLeadId("001").staffIds(Arrays.asList("001", "002", "003", "004", "005"))
 
-                ).stream().map(ProjectEntity.ProjectEntityBuilder::build).collect(toImmutableSet());
+                ).stream().map(Project.ProjectBuilder::build).collect(toImmutableSet());
     }
 
-    public Optional<ProjectEntity> findById(String id) {
+    public Optional<Project> findById(String id) {
         return projects.stream()
-                .filter(projectEntity -> projectEntity.getId().equals(id))
+                .filter(project -> project.getId().equals(id))
                 .findAny();
     }
 
-    public List<ProjectEntity> findAll() {
+    public List<Project> findAll() {
         return projects.stream().collect(toImmutableList());
     }
 }
