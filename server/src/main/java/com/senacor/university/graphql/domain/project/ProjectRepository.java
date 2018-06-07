@@ -18,18 +18,18 @@ public class ProjectRepository {
 
     {
         projects = ImmutableSet.of(
-                Project.builder()
+                Project.newBuilder()
                         .id("001").projectCode("HRE").cstLeadId("005").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                Project.builder()
+                Project.newBuilder()
                         .id("002").projectCode("BAW").cstLeadId("004").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                Project.builder()
+                Project.newBuilder()
                         .id("003").projectCode("BDB").cstLeadId("003").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                Project.builder()
+                Project.newBuilder()
                         .id("004").projectCode("AOK").cstLeadId("002").staffIds(Arrays.asList("001", "002", "003", "004", "005")),
-                Project.builder()
+                Project.newBuilder()
                         .id("005").projectCode("TEB").cstLeadId("001").staffIds(Arrays.asList("001", "002", "003", "004", "005"))
 
-                ).stream().map(Project.ProjectBuilder::build).collect(toImmutableSet());
+                ).stream().map(Project.Builder::build).collect(toImmutableSet());
     }
 
     public Optional<Project> findById(String id) {
