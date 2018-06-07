@@ -1,6 +1,8 @@
 package com.senacor.university.graphql;
 
+import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
@@ -9,6 +11,8 @@ import com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration;
 import com.senacor.university.graphql.error.CustomDataFetcherExceptionHandler;
 import com.senacor.university.graphql.error.CustomGraphQLErrorHandler;
 import com.senacor.university.graphql.json.SourceLocationDeserializer;
+import com.senacor.university.graphql.scalars.Email;
+import com.senacor.university.graphql.scalars.EmailScalarType;
 import graphql.analysis.MaxQueryComplexityInstrumentation;
 import graphql.analysis.MaxQueryDepthInstrumentation;
 import graphql.execution.AsyncExecutionStrategy;
@@ -50,13 +54,22 @@ public class CustomGraphQLConfiguration {
             mapper.registerModule(new Jdk8Module());
             mapper.registerModule(new JavaTimeModule());
             mapper.registerModule(new ParameterNamesModule());
+
+            SimpleModule emailModule = new SimpleModule(Version.unknownVersion());
+            emailModule.addSerializer(Email.class, new Email.Serializer());
+            emailModule.addDeserializer(Email.class, new Email.Deserializer());
+
+            mapper.registerModule(emailModule);
         };
     }
 
     @Bean
     Jackson2ObjectMapperBuilderCustomizer customJackson2ObjectMapperBuilderCustomizer() {
         return builder -> {
-            builder.deserializerByType(SourceLocation.class, new SourceLocationDeserializer());
+            builder
+                    .deserializerByType(SourceLocation.class, new SourceLocationDeserializer())
+                    .serializerByType(Email.class, new Email.Serializer())
+                    .deserializerByType(Email.class, new Email.Deserializer());
         };
     }
 
@@ -99,6 +112,11 @@ public class CustomGraphQLConfiguration {
     @Bean
     CustomGraphQLErrorHandler customGraphQLErrorHandler() {
         return new CustomGraphQLErrorHandler();
+    }
+
+    @Bean
+    EmailScalarType emailScalarType(ObjectMapper objectMapper) {
+        return new EmailScalarType(objectMapper);
     }
 
 }

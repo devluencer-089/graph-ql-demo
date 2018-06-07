@@ -3,6 +3,7 @@
         id
         firstName
         lastName
+        email
         age
         gender
         employedSince

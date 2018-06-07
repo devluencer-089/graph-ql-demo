@@ -10,6 +10,7 @@ import java.util.Set;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
+import static com.senacor.university.graphql.scalars.Email.from;
 import static java.time.Month.APRIL;
 import static java.time.Month.FEBRUARY;
 import static java.time.Month.JANUARY;
@@ -24,15 +25,15 @@ public class EmployeeRepository {
     {
         employees = ImmutableSet.of(
                 Employee.builder()
-                        .id("001")  .projectId("001")   .firstName("Si")        .lastName("Tran")   .gender(Gender.MALE)    .age(31)    .employedSince(LocalDate.of(2010, JANUARY, 1)),
+                        .id("001")  .projectId("001")   .firstName("Si")        .lastName("Tran")   .email(from("si.tran@senacor.com"))         .gender(Gender.MALE)    .age(31)    .employedSince(LocalDate.of(2010, JANUARY, 1)),
                 Employee.builder()
-                        .id("002")  .projectId("001")   .firstName("Michael")   .lastName("Omann")  .gender(Gender.MALE)    .age(34)    .employedSince(LocalDate.of(2011, FEBRUARY, 2)),
+                        .id("002")  .projectId("001")   .firstName("Michael")   .lastName("Omann")  .email(from("michael.omann@senacor.com"))   .gender(Gender.MALE)    .age(34)    .employedSince(LocalDate.of(2011, FEBRUARY, 2)),
                 Employee.builder()
-                        .id("003")  .projectId("001")   .firstName("Michael")   .lastName("Sewell") .gender(Gender.MALE)    .age(31)    .employedSince(LocalDate.of(2012, MARCH, 3)),
+                        .id("003")  .projectId("001")   .firstName("Michael")   .lastName("Sewell") .email(from("michael.sewell@senacor.com"))  .gender(Gender.MALE)    .age(31)    .employedSince(LocalDate.of(2012, MARCH, 3)),
                 Employee.builder()
-                        .id("004")  .projectId("001")   .firstName("Hannes")    .lastName("Leitl")  .gender(Gender.MALE)    .age(63)    .employedSince(LocalDate.of(2013, APRIL, 4)),
+                        .id("004")  .projectId("001")   .firstName("Hannes")    .lastName("Leitl")  .email(from("hannes.leitl@senacor.com"))    .gender(Gender.MALE)    .age(63)    .employedSince(LocalDate.of(2013, APRIL, 4)),
                 Employee.builder()
-                        .id("005")  .projectId("001")   .firstName("Hanna")     .lastName("Häusel") .gender(Gender.FEMALE)  .age(29)    .employedSince(LocalDate.of(2014, MAY, 5))
+                        .id("005")  .projectId("001")   .firstName("Hanna")     .lastName("Häusel") .email(from("hanna.haeusel@senacor.com"))   .gender(Gender.FEMALE)  .age(29)    .employedSince(LocalDate.of(2014, MAY, 5))
 
         ).stream().map(Employee.EmployeeBuilder::build).collect(toImmutableSet());
     }
