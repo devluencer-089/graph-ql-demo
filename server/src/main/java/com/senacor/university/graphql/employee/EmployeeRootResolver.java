@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class EmployeeRootResolver implements GraphQLQueryResolver {
         this.repository = repository;
     }
 
-    public List<Employee> employees(Gender gender, Integer olderThan) {
+    public List<Employee> employees(Gender gender, @Min(0) Integer olderThan) {
         List<EmployeeEntity> genderMatch = gender == null ? repository.findAll() : repository.findByGender(gender);
         List<EmployeeEntity> ageMatch = olderThan == null ? repository.findAll() : repository.findOlderThan(olderThan);
 

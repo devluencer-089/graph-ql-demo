@@ -5,6 +5,7 @@ import com.senacor.university.graphql.GraphQLResult;
 import com.senacor.university.graphql.GraphQLTestClient;
 import com.senacor.university.graphql.project.Project;
 import com.senacor.university.graphql.project.ProjectAssert;
+import graphql.ErrorType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -235,6 +236,42 @@ public class EmployeesQueryIntegrationTest {
                     .hasSize(1)
                     .first()
                     .hasFieldOrPropertyWithValue("message", "Exception while fetching data (/second) : customer with id 009 not found");
+
+        }
+
+        @Test
+        public void constraintValidationAnnotationsAreNotSupported() throws IOException {
+            GraphQLResult result = client.executeQuery("find_employees_with_constraint_validation.txt");
+
+            assertThat(result.errors()).isEmpty();
+        }
+    }
+
+
+    @Nested
+    class Instrumentation {
+
+        @Test
+        public void queryComplexityCanBeLimited() throws IOException {
+            GraphQLResult result = client.executeQuery("query_exceeding_configured_complexity.txt");
+
+            assertThat(result.errors()).hasSize(1)
+                    .first()
+                    .hasFieldOrPropertyWithValue("message", "maximum query complexity exceeded 22 > 20")
+                    .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
+
+        }
+
+
+        @Test
+        public void queryDepthCanBeLimited() throws IOException {
+            GraphQLResult result = client.executeQuery("query_exceeding_configured_depth.txt");
+
+            assertThat(result.errors()).hasSize(1)
+                    .first()
+                    .hasFieldOrPropertyWithValue("message", "maximum query depth exceeded 6 > 4")
+                    .hasFieldOrPropertyWithValue("errorType", ErrorType.ExecutionAborted);
+
 
         }
     }
