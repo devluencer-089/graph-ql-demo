@@ -26,3 +26,9 @@ Click on the links to find setup guides.
   - An excellent primer from Bealung for getting started with GraphQL and Spring Boot.
 - [GraphQL Faker](https://github.com/APIs-guru/graphql-faker) is a tool which lets you mock or extend GraphQL-based APIs. Very useful for playing around in the frontend.
 
+
+### GraphQL features not implemented
+- [https://graphql.org/learn/schema/#interfaces]
+- [https://graphql.org/learn/schema/#union-types]
+- [https://graphql.org/learn/schema/#input-types]
+- [https://graphql.github.io/learn/pagination]
