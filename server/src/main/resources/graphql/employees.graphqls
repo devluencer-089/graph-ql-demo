@@ -27,6 +27,13 @@ type Employee {
 enum Gender {
     FEMALE,
     MALE,
+    SHEMALE @deprecated(reason: "too generic"),
+    NON_BINARY,
+}
+
+enum Locale {
+    DE,
+    US,
 }
 
 
