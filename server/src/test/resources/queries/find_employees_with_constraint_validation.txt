@@ -1,0 +1,9 @@
+{
+    employees(olderThan: -1) {
+        id
+        firstName
+        lastName
+        age
+        gender
+    }
+}

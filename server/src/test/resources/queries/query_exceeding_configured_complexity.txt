@@ -1,0 +1,29 @@
+{
+    employee(id: "001") {
+        id
+        firstName
+        lastName
+        age
+        gender
+        project {
+            id
+            cstLead {
+                id
+                firstName
+                lastName
+                age
+                gender
+            }
+            staff {
+                id
+                firstName
+                lastName
+                age
+                gender
+                project {
+                    id
+                }
+            }
+        }
+    }
+}
