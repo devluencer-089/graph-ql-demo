@@ -177,6 +177,17 @@ public class ShowCaseIntegrationTests {
 
             assertThat(result.descentTo("employee").as(Employee.class)).isNotNull();
         }
+
+        @Test
+        public void variablesCanBeDefinedForScalarsToo() throws IOException {
+
+            GraphQLResult result = client.executeQuery("all_employees_with_private_email.txt");
+
+            assertThat(result.descentTo("employees").asListOf(Employee.class))
+                    .hasSize(5)
+                    .extracting(Employee::getEmail)
+                    .allSatisfy(email -> assertThat(email.getValue()).endsWith("@googlemail.com"));
+        }
     }
 
 
@@ -188,7 +199,7 @@ public class ShowCaseIntegrationTests {
 
             GraphQLResult result = client.executeQuery("single_employee_with_project.txt");
 
-            Project project  = result.descentTo("employee.project").as(Project.class);
+            Project project = result.descentTo("employee.project").as(Project.class);
             ProjectAssert.assertThat(project).hasId("001");
 
             Employee cstLead = result.descentTo("employee.project.cstLead").as(Employee.class);
@@ -203,7 +214,7 @@ public class ShowCaseIntegrationTests {
 
             GraphQLResult result = client.executeQuery("single_employee_with_project_and_staff.txt");
 
-            Project project  = result.descentTo("employee.project").as(Project.class);
+            Project project = result.descentTo("employee.project").as(Project.class);
             ProjectAssert.assertThat(project).hasId("001");
 
             List<Employee> staff = result.descentTo("employee.project.staff").asListOf(Employee.class);

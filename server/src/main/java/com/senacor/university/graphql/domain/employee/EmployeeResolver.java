@@ -19,4 +19,16 @@ class EmployeeResolver implements GraphQLResolver<Employee> {
     public Optional<Project> project(Employee employee) {
         return repository.findById(employee.getProjectId());
     }
+
+    public Email email(Employee employee, EmailType emailType) {
+        Email businessEmail = employee.getEmail();
+        switch (emailType) {
+            case PRIVATE:
+                String address = businessEmail.getValue();
+                return Email.from(address.replace("@senacor.com", "@googlemail.com"));
+            case BUSINESS:
+                return businessEmail;
+            default: throw new AssertionError("unreachable");
+        }
+    }
 }

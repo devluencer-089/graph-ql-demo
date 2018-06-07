@@ -1,0 +1,5 @@
+{
+    employees {
+        email(type: PRIVATE)
+    }
+}
