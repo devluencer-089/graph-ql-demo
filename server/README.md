@@ -45,8 +45,6 @@ mvn heroku:deploy
 Open [https://graphicademy.herokuapp.com/graphiql]
 
 ## TODOs
-- Exception Handling
-- Validation
 - custom Scalar Types: Date, Email
 - mutations
 - subscriptions
