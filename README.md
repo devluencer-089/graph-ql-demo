@@ -32,3 +32,6 @@ Click on the links to find setup guides.
 - [https://graphql.org/learn/schema/#union-types]
 - [https://graphql.org/learn/schema/#input-types]
 - [https://graphql.github.io/learn/pagination]
+
+
+[cheat sheet](https://raw.githubusercontent.com/sogko/graphql-shorthand-notation-cheat-sheet/master/graphql-shorthand-notation-cheat-sheet.png)
