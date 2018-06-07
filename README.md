@@ -3,7 +3,9 @@
 ## Repository structure
 
 /[server](https://github.com/michaelom/graph-ql-demo/tree/master/server) -> GraphQL backend: 
+
 /[iOS](https://github.com/michaelom/graph-ql-demo/tree/master/iOS) -> iOS client
+
 /[web](https://github.com/michaelom/graph-ql-demo/tree/master/web) -> React client
 
 Click on the links to find setup guides.
