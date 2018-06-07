@@ -14,12 +14,14 @@ type Employee {
     id: ID!
     firstName: String!
     lastName: String!
+    email: Email!
     age: Int!
     gender: Gender!
     # the project id this employee is currently assigned to
     projectId: ID
     # the project this employee is currently assigned to
     project: Project
+    employedSince: LocalDate!
 }
 
 enum Gender {
@@ -27,3 +29,4 @@ enum Gender {
     MALE,
 }
 
+scalar Email

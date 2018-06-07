@@ -5,6 +5,7 @@ import com.senacor.university.graphql.GraphQLResult;
 import com.senacor.university.graphql.GraphQLTestClient;
 import com.senacor.university.graphql.domain.project.Project;
 import com.senacor.university.graphql.domain.project.ProjectAssert;
+import com.senacor.university.graphql.scalars.Email;
 import graphql.ErrorType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -15,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,7 +59,9 @@ public class EmployeesQueryIntegrationTest {
                     .hasId("001")
                     .hasFirstName("Si")
                     .hasLastName("Tran")
+                    .hasEmail(Email.from("si.tran@senacor.com"))
                     .hasGender(Gender.MALE)
+                    .hasEmployedSince(LocalDate.of(2010, Month.JANUARY, 1))
                     .hasAge(31);
         }
 
