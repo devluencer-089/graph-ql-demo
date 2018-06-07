@@ -32,6 +32,9 @@
         <junit-platform.version>1.2.0</junit-platform.version>
 
         <rest-assured.version>3.1.0</rest-assured.version>
+
+        <assertj.version>3.8.0</assertj.version>
+
     </properties>
 
     <dependencies>
@@ -60,13 +63,6 @@
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java-tools</artifactId>
             <version>${graphql.tools.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.22</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -102,7 +98,6 @@
             <version>${junit-platform.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -110,14 +105,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>${rest-assured.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.8.0</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -176,8 +166,9 @@
                 <configuration>
                     <!-- List the classes you want to generate assertions for -->
                     <classes>
-                        <param>com.senacor.university.graphql.employee.Employee</param>
-                        <param>com.senacor.university.graphql.project.Project</param>
+                        <param>com.senacor.university.graphql.domain.employee.Employee</param>
+                        <param>com.senacor.university.graphql.domain.employee.Email</param>
+                        <param>com.senacor.university.graphql.domain.project.Project</param>
                     </classes>
 
                     <!-- If true, all files in targetDir are removed before generating new ones (default to false) -->

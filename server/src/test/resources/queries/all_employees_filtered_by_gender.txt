@@ -1,11 +1,9 @@
 {
-    employee(id: "001") {
+    employees(withGender: FEMALE) {
         id
         firstName
         lastName
-        email
         age
         gender
-        employedSince
     }
 }

@@ -1,52 +1,66 @@
-# GraphQL Demo Server
+# GraphQLDemo (server)
+
+## Setup / Requirements
+
+Configure your IDE to use a Java 8 JDK and the 'Maven' plugin. Import the Server as a Maven project.
+Verify your setup by running `mvn test`. (Maven Wrapper is configured for project if you prefer `mvni`.)
+
+The app generates AssertJ-assertions during build execution. Assertions can also be generated manually:
+```
+mvn assertj:generate-assertions
+```
 
 ## Quickstart
-Server is running on port 8100.
 
-GraphiQL In-Browser IDE for exploring the API is located at
-
-<http://localhost:8100/graphiql>
-
-
-Voyager, a visualization tool for GraphQL APIs is located at
-
-<http://localhost:8100/voyager>
-
-
-Open the the GraphiQL IDE and execute the following query
-```
-employees {
-    id,
-    firstName,
-    lastName,
-    age,
-    gender
-  }
-```
-
-
-Run app locally:
+Start the server by running:
 ```
 mvn spring-boot:run 
-
 ```
 or
 ```
 mvn spring-boot:start 
 
 ```
+Server is running on port 8100.
 
 
-Deploy to Heroku:
+GraphiQL, an in-browser IDE for exploring the API is located at
+<http://localhost:8100/graphiql>
+
+
+Voyager, a visualization tool for GraphQL APIs is located at
+<http://localhost:8100/voyager>
+
+
+Open the the GraphiQL IDE and execute the following query
 ```
-mvn heroku:deploy
-
+{
+  employees {
+    id,
+    firstName,
+    lastName,
+    age,
+    gender
+  }
+}
 ```
+
+# Heroku
+The app is deployed on Heroku:
 Open [https://graphicademy.herokuapp.com/graphiql]
 
-## Technologies Inside
-* Spring Boot 2.x
-* GraphQL-Spring-Boot-Starter
-  * Schema-files: resources/*.graphqls
-  * every *.graphqls file will be evaluated on the classpath
+
+deploying to Heroku (requires explicit access):
+```
+mvn heroku:deploy
+```
+
+
+## TODOs
+- custom Scalar Types: Date, Email
+- mutations
+- subscriptions
+- conversion into different units
+- https://graphql.org/learn/schema/#interfaces
+- https://graphql.org/learn/schema/#union-types
 

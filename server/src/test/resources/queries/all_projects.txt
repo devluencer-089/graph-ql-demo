@@ -1,0 +1,12 @@
+{
+    projects {
+        id
+        projectCode
+        cstLead {
+            id
+        }
+        staff {
+            id
+        }
+    }
+}

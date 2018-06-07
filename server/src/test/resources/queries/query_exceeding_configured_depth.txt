@@ -1,0 +1,65 @@
+{
+    employee(id: "001") {
+        id
+        project {
+            id
+            cstLead {
+                id
+                project {
+                    id
+                    cstLead {
+                        id
+                        project {
+                            id
+                            cstLead {
+                                id
+                                project {
+                                    id
+                                    cstLead {
+                                        id
+                                        project {
+                                            id
+                                            cstLead {
+                                                id
+                                                project {
+                                                    id
+                                                    cstLead {
+                                                        id
+                                                        project {
+                                                            id
+                                                            cstLead {
+                                                                id
+                                                                project {
+                                                                    id
+                                                                    cstLead {
+                                                                        id
+                                                                        project {
+                                                                            id
+                                                                            cstLead {
+                                                                                id
+                                                                                project {
+                                                                                    id
+                                                                                    cstLead {
+                                                                                        id
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

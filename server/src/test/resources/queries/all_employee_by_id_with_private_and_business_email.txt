@@ -1,0 +1,6 @@
+{
+    employee(id: "001") {
+        privateMail: email(type: PRIVATE)
+        businessMail: email(type: BUSINESS)
+    }
+}

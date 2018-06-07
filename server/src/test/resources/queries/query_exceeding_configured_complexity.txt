@@ -1,0 +1,45 @@
+{
+    a: employee(id: "001") {
+        ...allFields
+    },
+    b: employee(id: "002") {
+        ...allFields
+    },
+    c: employee(id: "003") {
+        ...allFields
+    },
+    d: employee(id: "004") {
+        ...allFields
+    },
+    e: employee(id: "005") {
+        ...allFields
+    },
+        f: employee(id: "005") {
+            ...allFields
+        }
+}
+
+fragment allFields on Employee {
+        id
+        firstName
+        lastName
+        age
+        gender
+        project {
+            id
+            cstLead {
+                id
+                firstName
+                lastName
+                age
+                gender
+            }
+            staff {
+                id
+                firstName
+                lastName
+                age
+                gender
+            }
+        }
+}

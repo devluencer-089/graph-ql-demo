@@ -1,0 +1,8 @@
+{
+    first: employee(id: "001") {
+        id
+    },
+    second: employee(id: "009") {
+        id
+    }
+}

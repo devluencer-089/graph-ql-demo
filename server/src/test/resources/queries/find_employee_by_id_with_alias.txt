@@ -1,0 +1,6 @@
+{
+    code_monkey: employee(id: "001") {
+        monkey_id: id
+        name: lastName
+    }
+}
