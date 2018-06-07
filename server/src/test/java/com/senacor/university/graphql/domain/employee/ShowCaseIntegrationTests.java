@@ -103,6 +103,15 @@ public class ShowCaseIntegrationTests {
                         .hasGender(Gender.FEMALE);
             });
         }
+
+        @Test
+        public void variablesCanHaveArgumentsToo() throws IOException {
+
+            GraphQLResult result = client.executeQuery("all_employee_by_id_with_private_and_business_email.txt");
+            
+            assertThat(result.descentTo("employee.privateMail").asString()).endsWith("@googlemail.com");
+            assertThat(result.descentTo("employee.businessMail").asString()).endsWith("@senacor.com");
+        }
     }
 
 
@@ -176,17 +185,6 @@ public class ShowCaseIntegrationTests {
                     Collections.singletonMap("employeeId", "001"));
 
             assertThat(result.descentTo("employee").as(Employee.class)).isNotNull();
-        }
-
-        @Test
-        public void variablesCanBeDefinedForScalarsToo() throws IOException {
-
-            GraphQLResult result = client.executeQuery("all_employees_with_private_email.txt");
-
-            assertThat(result.descentTo("employees").asListOf(Employee.class))
-                    .hasSize(5)
-                    .extracting(Employee::getEmail)
-                    .allSatisfy(email -> assertThat(email.getValue()).endsWith("@googlemail.com"));
         }
     }
 
