@@ -4,12 +4,7 @@ schema {
 
 extend type Query {
     # all employees
-    employees(
-        withGender: Gender,
-        # inclusive
-        olderThan: Int = 0,
-        # max query return size
-        limit: Int = 100): [Employee!]
+    employees: [Employee!]!
     # employee by id
     employee(id: ID!): Employee
 }
@@ -19,13 +14,11 @@ type Employee {
     id: ID!
     firstName: String!
     lastName: String!
-    email(type: EmailType = BUSINESS): Email!
+    email: Email!
     age: Int!
     gender: Gender!
     # the project id this employee is currently assigned to
     projectId: ID
-    # the project this employee is currently assigned to
-    project: Project
     employedSince: LocalDate!
 }
 
@@ -34,11 +27,6 @@ enum Gender {
     MALE,
     SHEMALE @deprecated(reason: "too generic"),
     NON_BINARY,
-}
-
-enum EmailType {
-    PRIVATE,
-    BUSINESS,
 }
 
 

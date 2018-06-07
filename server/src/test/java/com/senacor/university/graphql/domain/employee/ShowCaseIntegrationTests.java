@@ -6,6 +6,7 @@ import com.senacor.university.graphql.GraphQLTestClient;
 import com.senacor.university.graphql.domain.project.Project;
 import com.senacor.university.graphql.domain.project.ProjectAssert;
 import graphql.ErrorType;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
 @DisplayName("Employee Integration Tests")
+@Disabled("Does not work unless all features are implemented")
 public class ShowCaseIntegrationTests {
 
     @Autowired
