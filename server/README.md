@@ -3,7 +3,7 @@
 ## Setup / Requirements
 
 Configure your IDE to use a Java 8 JDK and the 'Maven' plugin. Import the Server as a Maven project.
-Verify your setup by running `mvn test`. (Maven Wrapper is configured for project if you prfer `mvni`.)
+Verify your setup by running `mvn test`. (Maven Wrapper is configured for project if you prefer `mvni`.)
 
 The app generates AssertJ-assertions during build execution. Assertions can also be generated manually:
 ```
