@@ -2,10 +2,12 @@
 
 ## Repository structure
 
-```md
-/server -> GraphQL backend
-/iOS  -> iOS client
-/web   -> JS client
+/[server](https://github.com/michaelom/graph-ql-demo/tree/master/server) -> GraphQL backend: 
+/[iOS](https://github.com/michaelom/graph-ql-demo/tree/master/iOS)
+/[web](https://github.com/michaelom/graph-ql-demo/tree/master/web)
+
+Click on the links to find setup guides.
+
 ```
 
 ## Recommended GraphQL-related reading
@@ -23,20 +25,3 @@
   - An excellent primer from Bealung for getting started with GraphQL and Spring Boot.
 - [GraphQL Faker](https://github.com/APIs-guru/graphql-faker) is a tool which lets you mock or extend GraphQL-based APIs. Very useful for playing around in the frontend.
 
-## Research goals
-
-- multiple clients, client-specific queries
-- server-side aggregation vs. client-side aggregation
-- schema migration/evolution (e.g. optionality)
-- mutations
-- writing tests against GraphQL APIs
-
-### Stretch goals
-
-- error handling: timeouts, request validation
-- file upload and non JSON-MediaTypes
-- pagination
-
-## Starting the server
-
-`mvn spring-boot:run`
